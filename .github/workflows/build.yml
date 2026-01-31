@@ -1,0 +1,21 @@
+name: Build APK
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build APK
+      uses: shogo82148/actions-android@v1
+      with:
+        workdir: app
+        
+    - name: Upload APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: calculator-apk
+        path: app/app-release.apk
